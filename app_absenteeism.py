@@ -5,7 +5,7 @@ import streamlit as st
 
   
 # loading in the model to predict on the data
-pickle_in = open('model.pkl',  'rb')
+pickle_in = open('/Users/gopalnath/Dropbox/Absenteeism_new/model.pkl',  'rb')
 model = pickle.load(pickle_in)
   
 def welcome():
@@ -13,10 +13,10 @@ def welcome():
   
 # defining the function which will make the prediction using 
 # the data which the user inputs
-def prediction(age,day,disc,distance,height,hit,month,seasons,r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r21,r22,r23,r24,r25,r26,r27,r28,trans,weight,wlapd):  
+def prediction(age,bmi,day,disc,distance,height,hit,month,r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r21,r22,r23,r24,r25,r26,r27,r28,seasons,social_drinker,weight,wlapd):  
    
     
-    ann_pred=model.predict([[age,day,disc,distance,height,hit,month,seasons,r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r21,r22,r23,r24,r25,r26,r27,r28,trans,weight,wlapd]])
+    ann_pred=model.predict([[age,bmi,day,disc,distance,height,hit,month,r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r21,r22,r23,r24,r25,r26,r27,r28,seasons,social_drinker,weight,wlapd]])
     
 
     pred=ann_pred.argmax(axis=-1)
@@ -64,7 +64,7 @@ col1,col2 = st.columns(2)
     
 with col1:
      age = st.slider("Age", 18, 60)
-     
+     bmi=st.number_input("Body mass index",step=1.,format="%.2f")
     
      day=st.number_input("Day of the week",step=1.,format="%.2f")
      
@@ -94,6 +94,8 @@ with col2:
     
          
      month = st.slider("Month of absence", 1, 12)
+     
+    
      p_class = st.selectbox("Reason of absence",options=['Abnormal clinical and laboratory findings','Blood Donation','Blood-forming organ & immune mechanism','Conditions originating in the perinatal period',  'Congenital malformations and chromosomal abnormalities','Certain infectious and parasitic diseases' , 'Dental Consultation'  ,'Diseases of the nervous system', 'Diseases of the eye and adnexa','Diseases of the ear and mastoid process','Diseases of the circulatory system', 'Diseases of the respiratory system','Diseases of the digestive system','Diseases of the skin and subcutaneous tissue', 'Diseases of musculoskeletal system & tissue', 'Diseases of the genitourinary system', 'Endocrine, nutritional and metabolic diseasess', 'External causes of morbidity and mortality', 'Factors to health status and health services',   'Injury, poisoning and consequences of external causes', 'Laboratory examination','Medical consultation','Mental and behavioural disorders',  'Neoplasms' , 'Patient follow-up',   'Physiotherapy', 'Pregnancy, childbirth and the puerperium' ])
      result =""
     
@@ -165,10 +167,13 @@ with col2:
      
     
      
+    
+     
+    # trans=st.number_input("Transportation expense(R$)",step=1.,format="%.2f")
      seasons = st.slider("Seasons", 1, 4)
-     
-     trans=st.number_input("Transportation expense(R$)",step=1.,format="%.2f")
-     
+      
+     social_drinker= st.selectbox("Social drinker",options=['Yes' , 'No'])
+     social_drinker = 0 if social_drinker == 'No' else 1
    
      weight=st.number_input("Weight(Kg)",step=1.,format="%.2f")
 #     height=st.number_input("Height",step=1.,format="%.2f")
@@ -185,5 +190,5 @@ with col2:
     # the prediction function defined above is called to make the prediction 
     # and store it in the variable result
      if st.button("Predict"):
-        result = prediction(age,day,disc,distance,height,hit,month,seasons,r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r21,r22,r23,r24,r25,r26,r27,r28,trans,weight,wlapd)
+        result = prediction(age,bmi,day,disc,distance,height,hit,month,r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r21,r22,r23,r24,r25,r26,r27,r28,seasons,social_drinker,weight,wlapd)
      st.success('The potential candidate is classified as ---- {}'.format(result))
