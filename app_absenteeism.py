@@ -5,7 +5,7 @@ import streamlit as st
 
   
 # loading in the model to predict on the data
-pickle_in = open('/model.pkl',  'rb')
+pickle_in = open('model.pkl',  'rb')
 model = pickle.load(pickle_in)
   
 def welcome():
