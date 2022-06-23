@@ -46,7 +46,7 @@ def main():
 
     html_temp = """
     <div style ="background-color:silver;padding:9px">
-    <h1 style ="color:black;text-align:center;">Absenteeism Interactive Tool(Prototype) </h1>
+    <h1 style ="color:black;text-align:center;">Absenteeism Interactive Tool (Prototype) </h1>
     </div>
     """
 
