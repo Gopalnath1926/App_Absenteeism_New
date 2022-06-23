@@ -183,7 +183,6 @@ with col2:
     
      wlapd=st.number_input("Work load average/day",step=1.,format="%.4f")
   
-    
 
       
     # the below line ensures that when the button called 'Predict' is clicked, 
@@ -192,5 +191,5 @@ with col2:
      if st.button("Predict"):
         result = prediction(age,bmi,day,disc,distance,height,hit,month,r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r21,r22,r23,r24,r25,r26,r27,r28,seasons,social_drinker,weight,wlapd)
      st.success('The potential candidate is classified as ---- {}'.format(result))
-<h1 style ="color:black;text-align:center;"> May not true for other company </h1>
+
 
