@@ -191,6 +191,6 @@ with col2:
      if st.button("Predict"):
         result = prediction(age,bmi,day,disc,distance,height,hit,month,r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r21,r22,r23,r24,r25,r26,r27,r28,seasons,social_drinker,weight,wlapd)
      st.success('The potential candidate is classified as ---- {}'.format(result))
-st.write('_Only for demonstration of the proposed tool_')
+st.write('_NB: The prototype is intended only for demonstration of the proposed tool. The output generated from this prototype may not be applicable to other organizations. _')
 
 
